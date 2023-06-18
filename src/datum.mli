@@ -26,7 +26,7 @@ type datum_value =
   | Char of char
   | String of string
   | Bool of bool 
-  | Socket of Unix.file_descr * Pervasives.in_channel * (Pervasives.out_channel *bool) * string
+  | Socket of Unix.file_descr * Stdlib.in_channel * (Stdlib.out_channel *bool) * string
   | Host of Unix.host_entry
   | Un                            
 

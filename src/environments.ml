@@ -7,12 +7,7 @@ open P_data
 module OrderedTyVars = 
   struct 
     type t = tyVar
-    let compare v1 v2 =       
-      match v1,v2 with
-	(TyVar x1,TyVar x2) -> compare x1 x2 
-      | (TyVar _,_) -> 1
-      | (_,TyVar _) -> -1
-      | (MTypeVar x1,MTypeVar x2) -> compare x1 x2
+    let compare = Stdlib.compare
   end
 module TyMap = Map.Make(OrderedTyVars);;
 
@@ -25,10 +20,10 @@ module Ordered_vars = (* ordering on term variables *)
     type t = term_variable
     let compare v1 v2 =
       match (v1,v2) with
-          (Var x1,Var x2) -> compare x1 x2
+          (Var x1,Var x2) -> Stdlib.compare x1 x2
         | (Var _,_) -> 1
         | (_,Var _) -> -1
-        | (Mvar x1,Mvar x2) -> compare x1 x2
+        | (Mvar x1,Mvar x2) -> Stdlib.compare x1 x2
   end
 module TVarSet = Set.Make(Ordered_vars);; 
 module TMap = Map.Make(Ordered_vars);;

@@ -20,7 +20,7 @@ type datum_value =
   | Char of char
   | String of string
   | Bool of bool 
-  | Socket     of Unix.file_descr * Pervasives.in_channel * (Pervasives.out_channel * bool) * string 
+  | Socket     of Unix.file_descr * Stdlib.in_channel * (Stdlib.out_channel * bool) * string 
   (* Sockets are linked to uni file descriptors and all have an input and an output channel as
    * well as a description. The boolean determines if an output channel can be flushed.
    * Note that server sockets (but not clients) cannot be flushed and the code uses this
@@ -232,7 +232,7 @@ let eval_datum d = function
 	  match d with 
 	    "negateint" -> Int (- m)
 	  | "randomint" -> Int (Random.int m)
-	  | "int2float" -> Float (Pervasives.float m)
+	  | "int2float" -> Float (Stdlib.float m)
 	  | "int2string" -> String (string_of_int m)
 	  | _ -> basicError (d^ " is not a unary integer op")
 		)

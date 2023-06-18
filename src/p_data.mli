@@ -2,8 +2,8 @@ val string_of_datum_value : Datum.datum_value -> string
 
 type identifier = string
 type tyVar = 
-    TyVar of string   (* user-defined variables *)
   | MTypeVar of int   (* machine-introduced type variable  *)
+  | TyVar of string   (* user-defined variables *)
 type p_type =
   | PtyV of tyVar 
   | Pconstant of string

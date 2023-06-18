@@ -1,0 +1,3 @@
+let rec size = 
+ | x y -> (size x) + (size y) 
+ | x -> 1;;

@@ -9,8 +9,8 @@ open Datum
 
 type identifier = string
 type tyVar = 
-    TyVar of string
   | MTypeVar of int
+  | TyVar of string
 type p_type =
   | PtyV of tyVar 
   | Pconstant of string
