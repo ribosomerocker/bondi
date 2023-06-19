@@ -8,12 +8,19 @@
       system = "x86_64-linux";
       pkgs = import nixpkgs { inherit system; };
       inherit (pkgs) ocamlPackages;
-      tools = with ocamlPackages; [ ocaml-lsp utop findlib dune_3 base ];
+      tools = with ocamlPackages; [ ocaml ocaml-lsp utop findlib dune_3 ];
+      bondi = ocamlPackages.buildDunePackage {
+        pname = "bondi";
+        buildInputs = [ ocamlPackages.base ];
+        version = "unstable-2023-06-19";
+        src = ./.;
+      };
     in
     {
+      packages.${system}.default = bondi;
       devShells.${system}.default = pkgs.mkShell {
-        nativeBuildInputs = tools ++ (with pkgs; [ ocaml ocamlformat opam ]);
-        buildInputs = with ocamlPackages; [ angstrom angstrom-unix ];
+        nativeBuildInputs = tools ++ [ pkgs.ocamlformat bondi ];
       };
+
     };
 }
