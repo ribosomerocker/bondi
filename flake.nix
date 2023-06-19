@@ -19,7 +19,7 @@
     {
       packages.${system}.default = bondi;
       devShells.${system}.default = pkgs.mkShell {
-        nativeBuildInputs = tools ++ [ pkgs.ocamlformat bondi ];
+        nativeBuildInputs = tools ++ [ pkgs.ocamlformat ];
       };
 
     };
